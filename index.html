@@ -115,7 +115,8 @@
   .check-list li{display:flex;align-items:center;gap:10px;font-size:14.5px;color:#d7dbe8;margin-bottom:12px;}
   .check-list li::before{content:'✓';color:var(--blue-bright);font-weight:800;}
 
-  .appt-card{background:var(--navy-panel);border:1px solid var(--navy-border);border-radius:10px;overflow:hidden;display:flex;position:relative;}
+  .appt-card{background:var(--navy-panel);border:1px solid var(--navy-border);border-radius:10px;display:flex;position:relative;}
+  .appt-top-row{border-radius:10px;overflow:hidden;display:flex;flex:1;}
   .appt-left{padding:24px;border-right:1px solid var(--navy-border);flex:1;}
   .appt-label{font-family:'SF Mono',monospace;font-size:10.5px;color:#7b8299;margin-bottom:18px;}
   .appt-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px;}
@@ -128,18 +129,19 @@
   .appt-cal-top b{color:#fff;}
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:10.5px;color:#7b8299;text-align:center;}
   .cal-grid .active{background:var(--blue);color:#fff;border-radius:4px;padding:3px 0;}
-  .appt-confirm{position:absolute;bottom:-14px;left:24px;right:24px;background:#1a2133;border-left:3px solid var(--blue-bright);border-radius:4px;padding:10px 14px;display:flex;justify-content:space-between;font-size:12px;color:#d7dbe8;box-shadow:0 10px 24px rgba(0,0,0,0.3);}
+  .appt-confirm{position:absolute;bottom:-18px;left:24px;right:24px;background:#1a2133;border-left:3px solid var(--blue-bright);border-radius:4px;padding:10px 14px;display:flex;justify-content:space-between;font-size:12px;color:#d7dbe8;box-shadow:0 10px 24px rgba(0,0,0,0.3);}
 
   /* ===== COST OF WAITING (bright blue) ===== */
   .waiting{background:var(--sky);padding:90px 48px 70px;}
   .waiting .eyebrow{color:#1c3a7a;}
   .waiting h2{font-size:40px;color:var(--ink);max-width:800px;line-height:1.2;margin-bottom:50px;}
-  .stat-row{display:flex;border-top:1px solid rgba(15,19,32,0.18);}
-  .stat-cell{flex:1;padding:26px 30px 26px 0;border-right:1px solid rgba(15,19,32,0.18);}
+  .stat-row{display:flex;border-top:1px solid rgba(15,19,32,0.22);align-items:stretch;}
+  .stat-cell{flex:1;padding:30px 36px 6px 0;border-right:1px solid rgba(15,19,32,0.22);display:flex;flex-direction:column;}
+  .stat-cell:first-child{padding-left:0;}
   .stat-cell:last-child{border-right:none;}
-  .stat-cell .num{font-size:42px;font-weight:800;color:var(--ink);line-height:1;margin-bottom:12px;}
-  .stat-cell .cap{font-size:11.5px;letter-spacing:0.3px;color:#1c2d55;line-height:1.5;text-transform:uppercase;font-family:'SF Mono',monospace;}
-  .waiting-foot{margin-top:30px;font-size:14px;color:#1c2d55;font-style:italic;}
+  .stat-cell .num{font-size:42px;font-weight:800;color:var(--ink);line-height:1;margin-bottom:14px;letter-spacing:-0.5px;}
+  .stat-cell .cap{font-size:11.5px;letter-spacing:0.3px;color:#1c2d55;line-height:1.55;text-transform:uppercase;font-family:'SF Mono',monospace;max-width:220px;}
+  .waiting-foot{margin-top:34px;padding-top:22px;border-top:1px solid rgba(15,19,32,0.18);font-size:14px;color:#1c2d55;font-style:italic;}
 
   /* ===== GUARANTEE (dark, centered) ===== */
   .guarantee{text-align:center;padding:100px 48px;}
@@ -200,6 +202,8 @@
     .hero h1{font-size:40px;}
     .stat-side{border-left:none;padding-left:0;border-top:1px solid var(--pale-border);padding-top:24px;}
     .pack-row,.pay-row{grid-template-columns:1fr;}
+    .demo-fork{flex-direction:column;}
+    #nodeBin{flex:none;}
     .pack:first-child,.pay-a{border-right:none;border-bottom:1px solid var(--pale-border);}
     .stat-row{flex-direction:column;}
     .stat-cell{border-right:none;border-bottom:1px solid rgba(15,19,32,0.18);}
@@ -216,6 +220,7 @@
   .demo-node.lit{border-color:var(--blue-bright);box-shadow:0 0 0 1px rgba(92,140,255,0.25),0 0 18px rgba(92,140,255,0.25);background:#17213a;}
   .demo-node.lit-bad{border-color:#e05c5c;box-shadow:0 0 0 1px rgba(224,92,92,0.2),0 0 18px rgba(224,92,92,0.18);}
   .demo-node.dim{opacity:0.7;}
+  #nodeBin{flex:1;display:flex;flex-direction:column;justify-content:center;}
   .demo-chip{transition:border-color .3s, color .3s, background .3s;}
   .demo-chip.lit-good{border-color:#49c17a;color:#8be8ac;background:#122018;}
   .demo-chip.lit-bad{border-color:#e05c5c;color:#f2a6a6;background:#241414;}
@@ -386,22 +391,24 @@
         <li>Less chasing</li>
       </ul>
     </div>
-    <div style="position:relative;padding-bottom:20px;">
+    <div style="position:relative;padding-bottom:34px;">
       <div class="appt-card">
-        <div class="appt-left">
-          <div class="appt-label">qualified / appointments</div>
-          <div class="appt-title">New client consultation</div>
-          <div class="appt-person">
-            <div class="appt-avatar">JM</div>
-            <div><div class="n">Jordan M.</div><div class="m">Owner · 17 min ago</div></div>
+        <div class="appt-top-row">
+          <div class="appt-left">
+            <div class="appt-label">qualified / appointments</div>
+            <div class="appt-title">New client consultation</div>
+            <div class="appt-person">
+              <div class="appt-avatar">JM</div>
+              <div><div class="n">Jordan M.</div><div class="m">Owner · 17 min ago</div></div>
+            </div>
           </div>
-        </div>
-        <div class="appt-cal">
-          <div class="appt-cal-top"><span>March 2025</span><b>Booked</b></div>
-          <div class="cal-grid">
-            <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>1</span><span>2</span>
-            <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-            <span>10</span><span>11</span><span>12</span><span class="active">13</span><span>14</span><span>15</span><span>16</span>
+          <div class="appt-cal">
+            <div class="appt-cal-top"><span>March 2025</span><b>Booked</b></div>
+            <div class="cal-grid">
+              <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>1</span><span>2</span>
+              <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+              <span>10</span><span>11</span><span>12</span><span class="active">13</span><span>14</span><span>15</span><span>16</span>
+            </div>
           </div>
         </div>
         <div class="appt-confirm"><span><b>Jordan M.</b> / 10:30 AM</span><span>confirmed</span></div>
@@ -585,12 +592,11 @@
       <div class="result-icon good">✓</div>
       <div class="result-title">You're a fit — grab a time.</div>
       <p class="result-text">Pick a slot below and we'll walk through your pack on the call.</p>
-      <a class="btn btn-blue" href="https://cal.com/lynxwork-z5zwxq/30min" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-bottom:16px;">Open booking page in a new tab ↗</a>
       <div class="cal-embed-wrap">
         <div id="calLoading" style="padding:60px 0;text-align:center;color:#8089a0;font-size:13.5px;">Loading calendar…</div>
-        <iframe id="calFrame" src="" style="width:100%;height:600px;border:none;display:none;" loading="lazy"></iframe>
+        <div id="calInlineEmbed" style="width:100%;min-height:600px;display:none;"></div>
       </div>
-      <div class="cal-fallback">If the calendar above doesn't load, use the button at the top instead.</div>
+      <a class="btn btn-ghost-dark" href="https://cal.com/lynxwork-z5zwxq/30min" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-top:14px;">Trouble loading? Open booking page in a new tab ↗</a>
     </div>
 
   </div>
@@ -690,19 +696,34 @@
   function initCalEmbed(){
     if (calInitialized) return;
     calInitialized = true;
-    var frame = document.getElementById('calFrame');
-    var loading = document.getElementById('calLoading');
-    frame.addEventListener('load', function(){
-      loading.style.display = 'none';
-      frame.style.display = 'block';
+
+    // Official Cal.com embed loader — renders the real booking calendar
+    // inline on this page (postMessage-based, not a plain iframe redirect).
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", "30min", {origin: "https://cal.com"});
+    Cal.ns["30min"]("inline", {
+      elementOrSelector: "#calInlineEmbed",
+      config: {layout: "month_view"},
+      calLink: "lynxwork-z5zwxq/30min"
     });
-    // if it hasn't loaded in 6s (blocked, offline, or opened via file:// instead of a real server), keep the loading note but the button above still works
-    setTimeout(function(){
-      if (frame.style.display === 'none'){
-        loading.textContent = 'Calendar is taking a while to load — use the button above to book directly.';
+    Cal.ns["30min"]("ui", {hideEventTypeDetails: false, layout: "month_view"});
+
+    var embedEl = document.getElementById('calInlineEmbed');
+    var loading = document.getElementById('calLoading');
+    var checkReady = setInterval(function(){
+      if (embedEl.querySelector('iframe')){
+        clearInterval(checkReady);
+        loading.style.display = 'none';
+        embedEl.style.display = 'block';
       }
-    }, 6000);
-    frame.src = CAL_LINK;
+    }, 300);
+    setTimeout(function(){
+      clearInterval(checkReady);
+      if (embedEl.style.display === 'none'){
+        loading.textContent = 'Calendar is taking a while to load — use the link below to book directly.';
+      }
+    }, 8000);
   }
 
   // ===== Live routing demo =====
